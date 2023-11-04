@@ -2,9 +2,11 @@ pipeline {
     agent any
     stages {
         stage('Build') {
-            script{
+            steps {
+            script {
                  app = docker.build("santhiya_docker")
                 }
+            }
         }
     }
 }
