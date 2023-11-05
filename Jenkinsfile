@@ -16,7 +16,7 @@ pipeline {
                 // }
 
                 //def branchname = sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
-                def branchname = scm.branches[0].name.split("/")[1]
+                def branchname = scm.branches[0].name.split("/")[2]
                 //echo $branchname
                 app = docker.build("santhiya_docker:${branchname}")
                 }
