@@ -6,11 +6,16 @@ pipeline {
             checkout scm
             }
         }
-        stage('Build') {
+        stage('Build docker') {
             steps {
             script {
-                def branchname = sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
-                echo $branchname
+                withCredentials([gitUsernamePassword(credentialsId: 'santhiya-git',
+                 gitToolName: 'git-tool')]) {
+                    sh 'git fetch --all'
+                }
+
+                //def branchname = sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
+                //echo $branchname
                 app = docker.build("santhiya_docker")
                 }
             }
