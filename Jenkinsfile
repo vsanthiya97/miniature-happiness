@@ -9,10 +9,11 @@ pipeline {
         stage('Build docker') {
             steps {
             script {
-                withCredentials([gitUsernamePassword(credentialsId: 'santhiya-git',
-                 gitToolName: 'git-tool')]) {
-                    sh 'git fetch --all'
-                }
+                sh 'git fetch --all'
+                // withCredentials([gitUsernamePassword(credentialsId: 'santhiya-git',
+                //  gitToolName: 'git-tool')]) {
+                //     sh 'git fetch --all'
+                // }
 
                 //def branchname = sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
                 //echo $branchname
